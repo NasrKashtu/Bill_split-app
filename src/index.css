@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── DESIGN SYSTEM TOKENS ────────────────────────────────────────────── */
+:root {
+  /* Brand palette */
+  --purple-50:  #EEEDFE;
+  --purple-400: #7F77DD;
+  --purple-600: #534AB7;
+  --purple-800: #3C3489;
+  --purple-900: #26215C;
+
+  --teal-50:  #E1F5EE;
+  --teal-400: #1D9E75;
+  --teal-600: #0F6E56;
+  --teal-800: #085041;
+  --teal-900: #04342C;
+
+  --amber-50:  #FAEEDA;
+  --amber-400: #EF9F27;
+  --amber-600: #BA7517;
+  --amber-800: #633806;
+
+  --red-50:  #FCEBEB;
+  --red-400: #E24B4A;
+  --red-800: #791F1F;
+
+  --gray-50:  #F1EFE8;
+  --gray-200: #B4B2A9;
+  --gray-600: #5F5E5A;
+
+  /* Spacing */
+  --sp: 14px;    /* screen-padding */
+  --cr: 12px;    /* card-radius */
+  --pr: 10px;    /* pill-radius */
+
+  /* Semantic app colors — light */
+  --c-outer:    #E6E2F2;
+  --c-bg:       #F5F3EF;
+  --c-surface:  #FFFFFF;
+  --c-surface2: #F9F8F5;
+  --c-t1:       #1A1917;
+  --c-t2:       #5F5E5A;
+  --c-t3:       #9E9C94;
+  --c-border:   rgba(0, 0, 0, 0.09);
+  --c-hairline: rgba(0, 0, 0, 0.07);
+
+  /* Status pills */
+  --pill-pending-bg:   #FAEEDA;
+  --pill-pending-tx:   #633806;
+  --pill-uploaded-bg:  #E1F5EE;
+  --pill-uploaded-tx:  #085041;
+  --pill-confirmed-bg: #EAF3DE;
+  --pill-confirmed-tx: #27500A;
+  --pill-overdue-bg:   #FCEBEB;
+  --pill-overdue-tx:   #791F1F;
+}
+
+.dark {
+  --c-outer:    #08080A;
+  --c-bg:       #111009;
+  --c-surface:  #1C1B18;
+  --c-surface2: #232218;
+  --c-t1:       #F0EDE5;
+  --c-t2:       #A8A59D;
+  --c-t3:       #6A675F;
+  --c-border:   rgba(255, 255, 255, 0.09);
+  --c-hairline: rgba(255, 255, 255, 0.06);
+
+  /* Darken hero card bg tokens */
+  --purple-50:  #1E1C38;
+  --purple-900: #C5C0F5;
+  --teal-50:    #0C2420;
+  --teal-900:   #7ECFB3;
+  --amber-50:   #251A04;
+  --amber-800:  #F0B860;
+  --red-50:     #240E0E;
+  --red-800:    #F08080;
+  --gray-50:    #201E1A;
+  --gray-600:   #9E9B94;
+}
+
+/* ─── BASE ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background: var(--c-outer);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── UTILITY CLASSES ──────────────────────────────────────────────────── */
+.no-scrollbar              { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Hairline border — 0.5px spec */
+.border-h  { border: 0.5px solid var(--c-border); }
+.border-ht { border-top: 0.5px solid var(--c-hairline); }
+.border-hb { border-bottom: 0.5px solid var(--c-hairline); }
+
+/* Divide hairline for lists */
+.divide-h > * + * { border-top: 0.5px solid var(--c-hairline); }
+
+/* ─── ANIMATIONS ───────────────────────────────────────────────────────── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fillBar {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1;   }
+  50%       { opacity: 0.6; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.anim-up   { animation: slideUp  0.4s cubic-bezier(0.16,1,0.3,1) both; }
+.anim-down { animation: slideDown 0.35s cubic-bezier(0.16,1,0.3,1) both; }
+.anim-fade { animation: fadeIn   0.3s ease both; }
+
+.d1 { animation-delay: 0.05s; }
+.d2 { animation-delay: 0.10s; }
+.d3 { animation-delay: 0.15s; }
+.d4 { animation-delay: 0.20s; }
+.d5 { animation-delay: 0.25s; }
+.d6 { animation-delay: 0.30s; }
+
+.bar-fill {
+  transform-origin: left center;
+  animation: fillBar 1s cubic-bezier(0.16,1,0.3,1) both;
+}
+.bar-d1 { animation-delay: 0.35s; }
+.bar-d2 { animation-delay: 0.45s; }
+.bar-d3 { animation-delay: 0.55s; }
+.bar-d4 { animation-delay: 0.65s; }
+
+.pulse-soft { animation: pulseSoft 2s ease-in-out infinite; }
+
+/* Shimmer skeleton */
+.shimmer {
+  background: linear-gradient(90deg,
+    var(--c-surface2) 25%,
+    var(--c-surface)  50%,
+    var(--c-surface2) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ─── ACTIVE STATE ─────────────────────────────────────────────────────── */
+.tap-active {
+  transition: transform 0.14s cubic-bezier(0.34,1.56,0.64,1),
+              opacity   0.14s ease;
+}
+.tap-active:active {
+  transform: scale(0.975) translateY(1px);
+  opacity: 0.85;
+}
